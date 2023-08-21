@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdarg.h>
+#include <stddef.h>
 
 /**
  * print_char - Prints a single character.
@@ -21,11 +22,25 @@ void print_char(char c, int *count)
 
 void print_string(char *s, int *count)
 {
-	while (*s)
+	if (s == NULL)
 	{
-		putchar(*s);
-		s++;
-		(*count)++;
+		char *nullString = "(null)";
+
+		while (*nullString)
+		{
+			putchar(*nullString);
+			nullString++;
+			(*count)++;
+		}
+	}
+	else
+	{
+		while (*s)
+		{
+			putchar(*s);
+			s++;
+			(*count)++;
+		}
 	}
 }
 
