@@ -2,6 +2,34 @@
 #include <stdarg.h>
 
 /**
+ * print_char - Prints a single character.
+ * @c: The character to be printed.
+ * @count: Pointer to the count of characters.
+ */
+
+void print_char(char c, int *count)
+{
+	putchar(c);
+	(*count)++;
+}
+
+/**
+ * print_string - Prints a string.
+ * @s: The string to be printed.
+ * @count: Pointer to the count of characters.
+ */
+
+void print_string(char *s, int *count)
+{
+	while (*s)
+	{
+		putchar(*s);
+		s++;
+		(*count)++;
+	}
+}
+
+/**
  * _printf - Produces the output according to a format.
  * @format: Character string.
  *	c:
@@ -32,30 +60,22 @@ int _printf(const char *format, ...)
 			{
 				char c = (char)va_arg(args, int);
 
-				putchar(c);
-				count++;
+				print_char(c, &count);
 			}
 			else if (*format == 's')
 			{
 				char *s = va_arg(args, char *);
 
-				while (*s)
-				{
-					putchar(*s);
-					s++;
-					count++;
-				}
+				print_string(s, &count);
 			}
 			else
 			{
-				putchar(*format);
-				count++;
+				print_char(*format, &count);
 			}
 		}
 		else
 		{
-			putchar(*format);
-			count++;
+			print_char(*format, &count);
 		}
 		format++;
 	}
