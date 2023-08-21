@@ -1,0 +1,42 @@
+#include "main.h"
+
+/**
+ * print_char - Prints a char
+ * @types: List of arguments
+ * Return: Number of chars printed
+ */
+int print_char(va_list types)
+{
+    char c = va_arg(types, int);
+
+    return handle_write_char(c);
+}
+
+/**
+ * print_string - Prints a string
+ * @types: List of arguments
+ * Return: Number of chars printed
+ */
+int print_string(va_list types)
+{
+    char *str = va_arg(types, char *);
+
+    if (str == NULL)
+        str = "(null)";
+
+    int length = 0;
+    while (str[length] != '\0')
+        length++;
+
+    return write(1, str, length);
+}
+
+/**
+ * print_percent - Prints a percent sign
+ * @types: List of arguments
+ * Return: Number of chars printed
+ */
+int print_percent(va_list types)
+{
+    return write(1, "%%", 1);
+}
