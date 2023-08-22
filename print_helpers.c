@@ -27,7 +27,7 @@ void print_string(char *s, int *count)
 	if (s == NULL)
 	{
 		char *nullString = "(null)";
-
+		
 		while (*nullString)
 		{
 			write(1, nullString, 1);
@@ -43,9 +43,9 @@ void print_string(char *s, int *count)
 			s++;
 			(*count)++;
 		}
-
 	}
 }
+
 
 /**
  * process_percent - Handles the '%' format.
@@ -88,8 +88,10 @@ const char *process_format(const char *format, va_list args, int *count)
 	}
 	else
 	{
+
 		print_char('%', count);
 		print_char(*format, count);
+
 	}
 	return (format);
 }
