@@ -60,7 +60,7 @@ void process_percent(int *count)
 /**
  * process_format - Processes a single format.
  * @format: Pointer to the current format.
- * @args: Argument list.
+ * @args: Arguments list.
  * @count: Pointer to the count of characters printed.
  *
  * Return: Pointer to the format string.
