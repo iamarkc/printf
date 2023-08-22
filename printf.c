@@ -86,10 +86,6 @@ const char *process_format(const char *format, va_list args, int *count)
 	{
 		process_percent(count);
 	}
-	else if (*format == '!')
-	{
-		return (format + 1);
-	}
 	else
 	{
 		print_char('%', count);
