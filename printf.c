@@ -48,6 +48,8 @@ void print_string(char *s, int *count)
 /**
  * process_percent - Handles the '%' format.
  * @count: Pointer to the count of characters printed.
+ *
+ * Return: -1 to indicate error.
  */
 
 void process_percent(int *count)
@@ -109,6 +111,11 @@ int _printf(const char *format, ...)
 {
 	int count = 0;
 	va_list args;
+
+	if (format == NULL)
+	{
+		return (-1);
+	}
 
 	va_start(args, format);
 	while (*format)
