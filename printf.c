@@ -88,6 +88,7 @@ const char *process_format(const char *format, va_list args, int *count)
 	}
 	else
 	{
+		print_char('%', count);
 		print_char(*format, count);
 	}
 	return (format);
