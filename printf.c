@@ -84,13 +84,6 @@ const char *process_format(const char *format, va_list args, int *count)
 
 		print_string(s, count);
 	}
-	else if (*format == 'd' || *format == 'i')
-	{
-		int num = va_arg(args, int);
-
-		printf("%d", num);
-		count++;
-	}
 	else if (*format == '%')
 	{
 		process_percent(count);
