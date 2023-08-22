@@ -60,8 +60,9 @@ const char *process_format(const char *format, va_list args, int *count)
 
 int _printf(const char *format, ...)
 {
-	int count = 0;
 	va_list args;
+	int count = 0;
+	unsigned int num = va_arg(args, unsigned int);
 
 	va_start(args, format);
 	while (*format)
@@ -70,9 +71,13 @@ int _printf(const char *format, ...)
 		{
 			format = process_format(format, args, &count);
 		}
+		if (*format == 'b')
+		{
+			print_binary(num, &count);
+		}
 		else
 		{
-			print_char(*format, &count);
+			count += putchar(*format);
 		}
 		format++;
 	}
