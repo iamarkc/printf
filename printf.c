@@ -48,6 +48,21 @@ const char *process_format(const char *format, va_list args, int *count)
 }
 
 /**
+ * print_binary - Prints the binary represantation.
+ * @n: The unsigned int to be printed.
+ * @count: Pointer to the count of characters.
+ */
+
+void print_binary(unsigned int n, int *count)
+{
+        if (n / 2 != 0)
+	{
+		print_binary(n / 2, count);
+	}
+		*count += _putchar('0' + n % 2);
+}
+
+/**
  * _printf - Produces the output according to a format.
  * @format: Character string.
  *	c:
@@ -62,24 +77,29 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int count = 0;
+	const char *ptr;
 	unsigned int num = va_arg(args, unsigned int);
 
 	va_start(args, format);
-	while (*format)
+	ptr = format;
+
+	while (*ptr != '\0')
 	{
-		if (*format == '%')
+		if (*ptr == '%')
 		{
-			format = process_format(format, args, &count);
+			ptr++;
 		}
-		if (*format == 'b')
+		else if (*ptr == 'b')
 		{
 			print_binary(num, &count);
+			ptr++;
 		}
 		else
 		{
-			count += putchar(*format);
+			putchar('%');
+			putchar(*ptr);
 		}
-		format++;
+		ptr++;
 	}
 	va_end(args);
 	return (count);

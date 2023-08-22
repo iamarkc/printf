@@ -56,18 +56,3 @@ void process_percent(int *count)
 {
 	print_char('%', count);
 }
-
-/**
- * print_binary - Prints the binary represantation.
- * @n: The unsigned int to be printed.
- * @count: Pointer to the count of characters.
- */
-
-void print_binary(unsigned int n, int *count)
-{
-	if (n / 2 != 0)
-	{
-		print_binary(n / 2, count);
-	}
-	*count += _putchar('0' + n % 2);
-}
