@@ -68,6 +68,9 @@ void process_percent(int *count)
 
 const char *process_format(const char *format, va_list args, int *count)
 {
+	int divisor = 1;
+	int temp = num;
+
 	format++;
 	if (*format == '\0')
 		return (format);
@@ -75,22 +78,56 @@ const char *process_format(const char *format, va_list args, int *count)
 	if (*format == 'c')
 	{
 	char c = (char)va_arg(args, int);
+	char buffer[2];
 
-	print_char(c, count);
+	buffer[0] = c;
+	buffer[1] = '\0';
+
+	print_string(buffer, count);
 	}
 	else if (*format == 's')
 	{
 		char *s = va_arg(args, char *);
 
-		print_string(s, count);
+		if (s == NULL)
+		{
+			print_string("(null)", count);
+		}
+		else
+		{
+			print_string(s, count);
+		}
 	}
 	else if (*format == '%')
 	{
 		process_percent(count);
 	}
+	else if (*format == 'd' || *format == 'i')
+	{
+		int num = va_arg(args, int);
+
+		if (num < 0)
+		{
+			print_char('-', count);
+			num = -num;
+		}
+
+		while (temp / 10 > 0)
+		{
+			divisor *= 10;
+			temp /= 10;
+		}
+		while (divisor > 0)
+		{
+			int digit = num / divisor;
+
+			num -= digit * divisor;
+			divisor /= 10;
+			print_char('0' + digit, count);
+		}
+	}
 	else
 	{
-		print_char('%', count);
 		print_char(*format, count);
 	}
 	return (format);
