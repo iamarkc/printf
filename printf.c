@@ -68,7 +68,6 @@ void process_percent(int *count)
 
 const char *process_format(const char *format, va_list args, int *count)
 {
-	format++;
 	if (*format == '\0')
 		return (format);
 
