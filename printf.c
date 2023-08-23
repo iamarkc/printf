@@ -68,7 +68,6 @@ void process_percent(int *count)
 
 const char *process_format(const char *format, va_list args, int *count)
 {
-	int i;
 
 	format++;
 	if (*format == '\0')
@@ -89,22 +88,6 @@ const char *process_format(const char *format, va_list args, int *count)
 	else if (*format == '%')
 	{
 		process_percent(count);
-	}
-	else if (*format == 'r')
-	{
-		char *s = va_arg(args, char *);
-
-		if (s != NULL)
-		{
-			int length = 0;
-
-			while (s[length])
-				length++;
-			for (i = length - 1; i >= 0; i--)
-			{
-				print_char(s[i], count);
-			}
-		}
 	}
 	else
 	{
